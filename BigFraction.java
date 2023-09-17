@@ -1,14 +1,17 @@
-package CSC207.Git.MP2;
+package MP2;
 import java.math.BigInteger;
 import java.lang.String;
 import java.lang.Integer;
 
- /*
-  * To do left:
-    - cite website for euclide's method (repeated subtraction approach)
-    - treat when there are negative numbers
-    - change BigFraction to BigFraction when pasting to this document
-  */
+  /*
+ * @author: Jinny Eo
+ * 
+ * Contains constructors for the BigFraction that is made from two BigIntegers
+ * for numerator and denominator (which both are declared as fields in the class). 
+ * Has methods for getting numerator and denominator; adding, subtracting, 
+ * multiplying, dividing, simplifying BigFractions; converting BigFraction to String; 
+ * returning the fractional part of a fraction. 
+ */
  
  public class BigFraction {
   // +--------+-------------------------------------------------------
@@ -157,8 +160,8 @@ import java.lang.Integer;
     BigInteger resultNum;
     BigInteger resultDenom;
 
-    resultDenom = this.denom.divide(divideMe.denom);
-    resultNum = this.num.divide(divideMe.num);
+    resultDenom = this.denom.multiply(divideMe.num);
+    resultNum = this.num.multiply(divideMe.denom);
 
     return new BigFraction(resultNum, resultDenom);
   }// divide(BigFraction)
@@ -171,21 +174,26 @@ import java.lang.Integer;
    * down as the two numbers so that they can be divided by the hcf)
    */
   public BigInteger hcf(BigInteger bigger, BigInteger smaller) {
-
+    // hcf found
     if (smaller.equals(bigger)) {
       return bigger;
     }
+    // use recursion with the smaller and bigger - smaller value 
     else {
       return hcf(smaller, bigger.subtract(smaller).abs());
     }
 
   }// hcf(BigInteger, BigInteger)
 
-
+/*
+ * Function to prepare and call for containHcf();  initializes necessary values and 
+ * assigns values to proper variables
+ */
   public BigInteger containHcf() {
       BigInteger bigger;
       BigInteger smaller;
       BigInteger hcf;
+      // if the numerator is greater than the denominator, assing numerator to the 'bigger' var
       if (this.num.compareTo(this.denom) ==  1) {
         bigger = this.num;
         smaller = this.denom;
@@ -194,19 +202,21 @@ import java.lang.Integer;
         smaller = this.num;
         bigger = this.denom;
       }
-        
+      // call hcf
       hcf = hcf(bigger, smaller);
       return hcf;
   }
 
-
+/*
+ * Simplifys this BigFraction by finding the hcf. Checks for special cases.
+ */
   public BigFraction simplify() {
-
-    BigFraction resultFraction = null;
-    // cite the website for euclide's method
-
+    BigInteger resultNum = null;
+    BigInteger resultDenom = null;
+    // if the numerator and denominator are equal, then fraction is 1/1
     if (this.num == this.denom) {
-      resultFraction = new BigFraction(BigInteger.ONE, BigInteger.ONE);
+      resultNum = BigInteger.ONE;
+      resultDenom = BigInteger.ONE;
     }
     // if the denominator is 0, invalid fraction
     else if (this.denom.equals(BigInteger.ZERO)) {
@@ -214,13 +224,14 @@ import java.lang.Integer;
       System.exit(1);
     }
     else {
+      // call containHcf(), which then calls hcf
       BigInteger hcf = containHcf();
-      BigFraction hcfFraction = new BigFraction(hcf, hcf);
-      // divide num and denom by hcf
-      resultFraction = divide(hcfFraction); 
+      // divide num and denom by hcf to simplify
+      resultNum = this.num.divide(hcf);
+      resultDenom = this.denom.divide(hcf);
     }
-
-    return resultFraction;
+    // return the simplified BigFraction
+    return new BigFraction(resultNum, resultDenom);
   }// simplify(BigFraction)
 
 
@@ -251,10 +262,10 @@ import java.lang.Integer;
   public BigFraction fractional(){
     BigInteger resultNum;
     BigInteger resultDenom;
-
+    // find the remainder to place in numerator of fraction
     resultNum = this.num.mod(this.denom);
     resultDenom = this.denom;
-
+    // return the fractional BigFraction
     return new BigFraction(resultNum, resultDenom);
   }// fractional()
 
