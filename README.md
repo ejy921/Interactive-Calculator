@@ -1,5 +1,7 @@
 # Mini-Project-2
 
+SamR says that this can be late.
+
 @author:Jinny Eo
 
 BigFraction.java: Contains constructors for the BigFraction that is made from two BigIntegers for numerator and denominator (which both are declared as fields in the class). Has methods for getting numerator and denominator; adding, subtracting, multiplying, dividing, simplifying BigFractions; converting BigFraction to String; returning the fractional part of a fraction. 
