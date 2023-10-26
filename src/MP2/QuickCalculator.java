@@ -1,18 +1,17 @@
 package MP2;
+
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
 import java.lang.String;
-import java.lang.Integer; 
+import java.lang.Integer;
 
 /*
  * @author: Jinny Eo
  * 
- * Reads from the command line argument a series of strings that 
- * contain either expressions to evaluate or command to store a 
- * variable. Prints out the result of each computation. Error 
- * checks for invalid registers and expressions (through use of 
- * BFCalculator).
+ * Reads from the command line argument a series of strings that contain either expressions to
+ * evaluate or command to store a variable. Prints out the result of each computation. Error checks
+ * for invalid registers and expressions (through use of BFCalculator).
  */
 
 public class QuickCalculator {
@@ -22,7 +21,7 @@ public class QuickCalculator {
   /** The denominator of the fraction. Must be non-negative. */
   BigInteger denom;
 
-  public static void main (String[] args) {
+  public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
     BFCalculator calculator = new BFCalculator();
 
@@ -33,9 +32,7 @@ public class QuickCalculator {
       if (str.length() >= 5 && str.substring(0, 5).equals("STORE")) {
         char register = str.charAt(6);
         calculator.store(register);
-      }
-
-      else {
+      } else {
         // split each expression into different terms
         String[] splitStr = str.split(" ");
         for (int j = 0; j < splitStr.length; j++) {
@@ -54,14 +51,14 @@ public class QuickCalculator {
             } // if it's a char of length 1
 
           } // if element in arr is char
-        } // for loop
+        } // for
 
         str = String.join(" ", splitStr);
         // evaluates string that has replaced register with stored value
         BigFraction evaluation = calculator.evaluate(str);
         pen.println(evaluation);
       } // unless there isn't a STORE
-    }
+    } // for
 
-  }
+  } // main
 }
