@@ -3,6 +3,9 @@
 SamR says that this can be late.
 
 @author:Jinny Eo
+Group Members: Jinny Eo
+
+One Sentence Description: This repository contains classes that works with the type BigFraction that is constructed in the BigFraction class, while implementing that class for various calculations in BFCalculator, InteractiveCalculator, and QuickCalculator.
 
 BigFraction.java: Contains constructors for the BigFraction that is made from two BigIntegers for numerator and denominator (which both are declared as fields in the class). Has methods for getting numerator and denominator; adding, subtracting, multiplying, dividing, simplifying BigFractions; converting BigFraction to String; returning the fractional part of a fraction. 
 
