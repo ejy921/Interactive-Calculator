@@ -1,9 +1,6 @@
-# Mini-Project-2
-
-SamR says that this can be late.
+# Interactive Calculatr
 
 @author:Jinny Eo
-Group Members: Jinny Eo
 
 One Sentence Description: This repository contains classes that works with the type BigFraction that is constructed in the BigFraction class, while implementing that class for various calculations in BFCalculator, InteractiveCalculator, and QuickCalculator.
 
