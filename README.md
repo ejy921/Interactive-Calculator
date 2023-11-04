@@ -1,4 +1,4 @@
-# Interactive Calculatr
+# Interactive Calculator
 
 @author:Jinny Eo
 
